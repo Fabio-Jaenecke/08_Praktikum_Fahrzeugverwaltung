@@ -4,10 +4,8 @@ import java.util.ArrayList;
  * Diese Klasse speichert Informationen eines Fahrrads.
  * @author Marc Rennhard
  */
-public class Fahrrad 
+public class Fahrrad extends Fahrzeug
 {
-  private String modell;
-  private int preis;
   private int stueckzahl;
   private int gaenge;
   ArrayList<Verkauf> verkaeufe;
@@ -21,8 +19,7 @@ public class Fahrrad
    */
   public Fahrrad(String modell, int preis, int stueckzahl, int gaenge)
   {
-    this.modell = modell;
-    this.preis = preis;
+	super(modell, preis);
     this.stueckzahl = stueckzahl;
     this.gaenge = gaenge;
     verkaeufe = new ArrayList<Verkauf>();
@@ -38,33 +35,13 @@ public class Fahrrad
   {
     if (stueckzahlKaufen <= stueckzahl) {
       stueckzahl -= stueckzahlKaufen;
-      Verkauf verkauf = new Verkauf(kunde, stueckzahlKaufen, stueckzahlKaufen * preis);
+      Verkauf verkauf = new Verkauf(kunde, stueckzahlKaufen, stueckzahlKaufen * gibPreis());
       verkaeufe.add(verkauf);
-      return kunde.gibInfo() + " hat " + stueckzahlKaufen + " Stueck des Modells " + modell +
-             " zu insgesamt CHF " + (stueckzahlKaufen * preis) + " gekauft";
+      return kunde.gibInfo() + " hat " + stueckzahlKaufen + " Stueck des Modells " + gibModell() +
+             " zu insgesamt CHF " + (stueckzahlKaufen * gibPreis()) + " gekauft";
       
     } else {
-      return "Es hat leider nur noch " + stueckzahl + " Stueck des Modells " + modell + " an Lager";
-    }
-  }
-  
-  /**
-   * Liefert das Modell des Fahrrads.
-   * @return Das Modell
-   */
-  public String gibModell() 
-  {
-    return modell;
-  }
-  
-  /**
-   * Setzt den Preis des Fahrrads.
-   * @param preis Der Preis
-   */
-  public void setzePreis(int preis) 
-  {
-    if (preis > 0) {
-      this.preis = preis;
+      return "Es hat leider nur noch " + stueckzahl + " Stueck des Modells " + gibModell() + " an Lager";
     }
   }
   
@@ -93,7 +70,7 @@ public class Fahrrad
    * @return Informationen des Verkaufs
    */
   public String gibInfo() {
-    String resultat = "Modell " + modell + ", " + stueckzahl + " Fahrzeuge zu je CHF " + preis + " an Lager.\n";
+    String resultat = "Modell " + gibModell() + ", " + stueckzahl + " Fahrzeuge zu je CHF " + gibPreis() + " an Lager.\n";
     resultat += "Bereits erfolgte Verkaeufe:\n";
     for (Verkauf verkauf : verkaeufe) {
       resultat += verkauf.gibInfo() + "\n";

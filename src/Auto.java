@@ -4,10 +4,8 @@ import java.util.ArrayList;
  * Diese Klasse speichert Informationen eines Autos.
  * @author Marc Rennhard
  */
-public class Auto 
+public class Auto extends Fahrzeug
 {
-  private String modell;
-  private int preis;
   private int stueckzahl;
   private int leistung;
   private int plaetze;
@@ -25,8 +23,7 @@ public class Auto
    */
   public Auto(String modell, int preis, int stueckzahl, int leistung, int plaetze, boolean vierradantrieb)
   {
-    this.modell = modell;
-    this.preis = preis;
+	super(modell, preis);
     this.stueckzahl = stueckzahl;
     this.leistung = leistung;
     this.plaetze = plaetze;
@@ -44,36 +41,16 @@ public class Auto
   {
     if (stueckzahlKaufen <= stueckzahl) {
       stueckzahl -= stueckzahlKaufen;
-      Verkauf verkauf = new Verkauf(kunde, stueckzahlKaufen, stueckzahlKaufen * preis);
+      Verkauf verkauf = new Verkauf(kunde, stueckzahlKaufen, stueckzahlKaufen * gibPreis());
       verkaeufe.add(verkauf);
-      return kunde.gibInfo() + " hat " + stueckzahlKaufen + " Stueck des Modells " + modell +
-             " zu insgesamt CHF " + (stueckzahlKaufen * preis) + " gekauft";
+      return kunde.gibInfo() + " hat " + stueckzahlKaufen + " Stueck des Modells " + gibModell() +
+             " zu insgesamt CHF " + (stueckzahlKaufen * gibPreis()) + " gekauft";
       
     } else {
-      return "Es hat leider nur noch " + stueckzahl + " Stueck des Modells " + modell + " an Lager";
+      return "Es hat leider nur noch " + stueckzahl + " Stueck des Modells " + gibModell() + " an Lager";
     }
   }
-  
-  /**
-   * Liefert das Modell des Autos.
-   * @return Das Modell
-   */
-  public String gibModell() 
-  {
-    return modell;
-  }
-  
-  /**
-   * Setzt den Preis des Autos.
-   * @param preis Der Preis
-   */
-  public void setzePreis(int preis) 
-  {
-    if (preis > 0) {
-      this.preis = preis;
-    }
-  }
-  
+   
   /**
    * Setze die verfuegbare Stueckzahl des Autos.
    * @param stueckzahl Die Stueckzahl
@@ -117,7 +94,7 @@ public class Auto
    * @return Informationen des Verkaufs
    */
   public String gibInfo() {
-    String resultat = "Modell " + modell + ", " + stueckzahl + " Fahrzeuge zu je CHF " + preis + " an Lager.\n";
+    String resultat = "Modell " + gibModell() + ", " + stueckzahl + " Fahrzeuge zu je CHF " + gibPreis() + " an Lager.\n";
     resultat += "Bereits erfolgte Verkaeufe:\n";
     for (Verkauf verkauf : verkaeufe) {
       resultat += verkauf.gibInfo() + "\n";
