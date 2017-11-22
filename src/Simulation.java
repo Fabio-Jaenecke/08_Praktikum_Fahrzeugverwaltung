@@ -73,25 +73,25 @@ public class Simulation
   
   private void kaufeFahrraeder()
   {
-    fahrzeugverwaltung.kaufeFahrrad("Gibt es nicht", 2, kunden.get(0));
-    fahrzeugverwaltung.kaufeFahrrad("Scott MTB", 2, kunden.get(0));
-    fahrzeugverwaltung.kaufeFahrrad("Pukky Kids", 2, kunden.get(1));
-    fahrzeugverwaltung.kaufeFahrrad("Pukky Kids", 2, kunden.get(2));
-    fahrzeugverwaltung.kaufeFahrrad("BMC Carbon", 2, kunden.get(2));
+    fahrzeugverwaltung.kaufeFahrzeug("Gibt es nicht", 2, kunden.get(0));
+    fahrzeugverwaltung.kaufeFahrzeug("Scott MTB", 2, kunden.get(0));
+    fahrzeugverwaltung.kaufeFahrzeug("Pukky Kids", 2, kunden.get(1));
+    fahrzeugverwaltung.kaufeFahrzeug("Pukky Kids", 2, kunden.get(2));
+    fahrzeugverwaltung.kaufeFahrzeug("BMC Carbon", 2, kunden.get(2));
   }
 
   private void kaufeMotorraeder()
   {
-    fahrzeugverwaltung.kaufeMotorrad("Harley Fat Boy", 1, kunden.get(0));
-    fahrzeugverwaltung.kaufeMotorrad("KTM 750", 3, kunden.get(1));
-    fahrzeugverwaltung.kaufeMotorrad("Harley Fat Boy", 2, kunden.get(2));
+    fahrzeugverwaltung.kaufeFahrzeug("Harley Fat Boy", 1, kunden.get(0));
+    fahrzeugverwaltung.kaufeFahrzeug("KTM 750", 3, kunden.get(1));
+    fahrzeugverwaltung.kaufeFahrzeug("Harley Fat Boy", 2, kunden.get(2));
   }
 
   private void kaufeAutos()
   {
-    fahrzeugverwaltung.kaufeAuto("Ferrari Enzo", 1, kunden.get(4));
-    fahrzeugverwaltung.kaufeAuto("Seat Bigfamily", 3, kunden.get(3));
-    fahrzeugverwaltung.kaufeAuto("Seat Bigfamily", 1, kunden.get(2));
+    fahrzeugverwaltung.kaufeFahrzeug("Ferrari Enzo", 1, kunden.get(4));
+    fahrzeugverwaltung.kaufeFahrzeug("Seat Bigfamily", 3, kunden.get(3));
+    fahrzeugverwaltung.kaufeFahrzeug("Seat Bigfamily", 1, kunden.get(2));
   }
 
   private void fahrzeugeAusgeben()

@@ -6,18 +6,14 @@ import java.util.ArrayList;
  */
 public class Fahrzeugverwaltung 
 {
-  private ArrayList<Fahrrad> fahrraeder;
-  private ArrayList<Motorrad> motorraeder;
-  private ArrayList<Auto> autos;
+  private ArrayList<Fahrzeug> fahrzeuge;
   
   /**
    * Konstruktor. Erzeugt eine Fahrzeugverwaltung.
    */
   public Fahrzeugverwaltung() 
   {
-    motorraeder = new ArrayList<Motorrad>();
-    autos = new ArrayList<Auto>();
-    fahrraeder = new ArrayList<Fahrrad>();
+    fahrzeuge = new ArrayList<Fahrzeug>();
   }
   
   /**
@@ -29,7 +25,7 @@ public class Fahrzeugverwaltung
    */
   public void erzeugeFahrrad(String modell, int preis, int stueckzahl, int gaenge) {
     Fahrrad fahrrad = new Fahrrad(modell, preis, stueckzahl, gaenge);
-    fahrraeder.add(fahrrad);
+    fahrzeuge.add(fahrrad);
   }
   
   /**
@@ -42,7 +38,7 @@ public class Fahrzeugverwaltung
    */
   public void erzeugeMotorrad(String modell, int preis, int stueckzahl, int leistung, boolean abs) {
     Motorrad motorrad = new Motorrad(modell, preis, stueckzahl, leistung, abs);
-    motorraeder.add(motorrad);
+    fahrzeuge.add(motorrad);
   }
   
   /**
@@ -56,76 +52,34 @@ public class Fahrzeugverwaltung
    */
   public void erzeugeAuto(String modell, int preis, int stueckzahl, int leistung, int plaetze, boolean vierradantrieb) {
     Auto auto = new Auto(modell, preis, stueckzahl, leistung, plaetze, vierradantrieb);
-    autos.add(auto);
+    fahrzeuge.add(auto);
   } 
 
   /**
-   * Kauft ein Fahrrad in der gewuenschten Stueckzahl.
+   * Kauft ein Fahrzeug in der gewuenschten Stueckzahl.
    * @param Modell Das gewuenschte Modell
    * @param stueckzahl Die gewuenschte Stueckzahl
    * @param kunde Der Kunde
    * @return Informationen ueber das Ergebnis des Kaufs
    */
-  public void kaufeFahrrad(String modell, int stueckzahl, Kunde kunde) {
-    for (Fahrrad fahrrad : fahrraeder) {
-      if (fahrrad.gibModell().equals(modell)) {
-        String kaufergebnis = fahrrad.kaufen(stueckzahl, kunde);
+  public void kaufeFahrzeug(String modell, int stueckzahl, Kunde kunde) {
+    for (Fahrzeug fahrzeug : fahrzeuge) {
+      if (fahrzeug.gibModell().equals(modell)) {
+        String kaufergebnis = fahrzeug.kaufen(stueckzahl, kunde);
         System.out.println(kaufergebnis);
         return;
       }
     }
     System.out.println("Das Modell " + modell + " konnte nicht gefunden werden");
   }
-
-  /**
-   * Kauft ein Motorrad in der gewuenschten Stueckzahl.
-   * @param Modell Das gewuenschte Modell
-   * @param stueckzahl Die gewuenschte Stueckzahl
-   * @param kunde Der Kunde
-   * @return Informationen ueber das Ergebnis des Kaufs
-   */
-  public void kaufeMotorrad(String modell, int stueckzahl, Kunde kunde) {
-    for (Motorrad motorrad : motorraeder) {
-      if (motorrad.gibModell().equals(modell)) {
-        String kaufergebnis = motorrad.kaufen(stueckzahl, kunde);
-        System.out.println(kaufergebnis);
-        return;
-      }
-    }
-    System.out.println("Das Modell " + modell + " konnte nicht gefunden werden");
-  }
-
-  /**
-   * Kauft ein Auto in der gewuenschten Stueckzahl.
-   * @param Modell Das gewuenschte Modell
-   * @param stueckzahl Die gewuenschte Stueckzahl
-   * @param kunde Der Kunde
-   * @return Informationen ueber das Ergebnis des Kaufs
-   */
-  public void kaufeAuto(String modell, int stueckzahl, Kunde kunde) {
-    for (Auto auto : autos) {
-      if (auto.gibModell().equals(modell)) {
-        String kaufergebnis = auto.kaufen(stueckzahl, kunde);
-        System.out.println(kaufergebnis);
-        return;
-      }
-    }
-    System.out.println("Das Modell " + modell + " konnte nicht gefunden werden");
-  }
-
+  
   /**
    * Gibt Informationen aller Fahrzeuge aus
    */
   public void ausgeben() 
   {
-    for (Fahrrad fahrrad : fahrraeder) {
-      System.out.println(fahrrad.gibInfo());
-    }
-    for (Motorrad motorrad : motorraeder) {
-      System.out.println(motorrad.gibInfo());
-    }
-    for (Auto auto : autos) {
-      System.out.println(auto.gibInfo());
+    for (Fahrzeug fahrzeug : fahrzeuge) {
+      System.out.println(fahrzeug.gibInfo());
     }
   }
 }
